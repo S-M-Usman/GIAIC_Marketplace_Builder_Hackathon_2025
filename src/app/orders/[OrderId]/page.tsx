@@ -1,7 +1,4 @@
-"use client"
-
 import { useCart } from "@/context/cart-context"
-import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -17,12 +14,7 @@ interface OrderPageProps {
 
 export default function OrderPage({ params }: OrderPageProps) {
   const { getOrderDetails, isLoading } = useCart()
-  const [orderDetails, setOrderDetails] = useState<ReturnType<typeof getOrderDetails>>(null)
-
-  useEffect(() => {
-    const details = getOrderDetails(params.orderId)
-    setOrderDetails(details)
-  }, [params.orderId, getOrderDetails])
+  const orderDetails = getOrderDetails(params.orderId)
 
   if (isLoading) {
     return (
