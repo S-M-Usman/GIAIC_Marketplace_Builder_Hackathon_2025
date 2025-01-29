@@ -1,3 +1,7 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
 import { useCart } from "@/context/cart-context"
 import { Loader2 } from "lucide-react"
 import Image from "next/image"
@@ -6,32 +10,55 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
-interface OrderPageProps {
-  params: {
-    orderId: string
-  }
+interface OrderItem {
+  id: string
+  name: string
+  image: string
+  quantity: number
+  price: number
+  category?: string
 }
 
-export default function OrderPage({ params }: OrderPageProps) {
-  const { getOrderDetails, isLoading } = useCart()
-  const orderDetails = getOrderDetails(params.orderId)
+interface OrderDetails {
+  items: OrderItem[]
+  formData: {
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string
+    locality: string
+    state: string
+    postalCode: string
+    country: string
+    email: string
+    phone: string
+  }
+  total: number
+  orderDate: string
+  status: string
+}
 
-  if (isLoading) {
+export default function OrderPage() {
+  const router = useRouter()
+  const orderId = router.query?.orderId as string
+  const { getOrderDetails, isLoading } = useCart()
+  
+  const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null)
+
+  useEffect(() => {
+    if (orderId) {
+      const fetchOrder = async () => {
+        const details = await getOrderDetails(orderId)
+        setOrderDetails(details)
+      }
+      fetchOrder()
+    }
+  }, [orderId, getOrderDetails])
+
+  if (isLoading || !orderDetails) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    )
-  }
-
-  if (!orderDetails) {
-    return (
-      <div className="min-h-screen flex items-center justify-center flex-col gap-4">
-        <h1 className="text-2xl font-bold">Order not found</h1>
-        <p className="text-gray-500">The order you&apos;re looking for doesn&apos;t exist.</p>
-        <Link href="/orders/track">
-          <Button variant="outline">Track Another Order</Button>
-        </Link>
       </div>
     )
   }
@@ -55,7 +82,7 @@ export default function OrderPage({ params }: OrderPageProps) {
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h1 className="text-2xl font-bold">Order #{params.orderId}</h1>
+                    <h1 className="text-2xl font-bold">Order #{orderId}</h1>
                     <p className="text-gray-500">
                       Placed on{" "}
                       {new Date(orderDate).toLocaleDateString("en-US", {
@@ -176,4 +203,3 @@ export default function OrderPage({ params }: OrderPageProps) {
     </div>
   )
 }
-
