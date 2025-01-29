@@ -45,14 +45,7 @@ const INITIAL_FORM_DATA: CheckoutFormData = {
   pan: "",
 }
 
-const STATES = [
-  "Maharashtra",
-  "Karnataka",
-  "Kerala",
-  "Tamil Nadu",
-  "Andhra Pradesh",
-  // Add other states as needed
-]
+
 
 export default function CheckOut() {
   const router = useRouter()
