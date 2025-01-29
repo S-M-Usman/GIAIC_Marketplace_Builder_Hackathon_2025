@@ -36,7 +36,7 @@ export default function OrderPage({ params }: OrderPageProps) {
     return (
       <div className="min-h-screen flex items-center justify-center flex-col gap-4">
         <h1 className="text-2xl font-bold">Order not found</h1>
-        <p className="text-gray-500">The order you're looking for doesn't exist.</p>
+        <p className="text-gray-500">The order you&apos;re looking for doesn&apos;t exist.</p>
         <Link href="/orders/track">
           <Button variant="outline">Track Another Order</Button>
         </Link>
