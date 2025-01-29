@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Filter } from "lucide-react";
 import { client } from "@/sanity/lib/client";
-import Link from "next/link";
 import Card from "@/components/Products/Card";
 
 type Product = {
