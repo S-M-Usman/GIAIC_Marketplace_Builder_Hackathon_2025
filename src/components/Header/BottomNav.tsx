@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar"
 import { useState } from "react"
 import { CartIcon } from "@/components/Cart/Icon"
 import { WishlistIcon } from "@/components/Wishlist/Icon"
+import {Menu} from "lucide-react"
 
 const NavBar = [
   { name: "New & Featured", link: "/products" },
@@ -62,9 +63,7 @@ const BottomNav = () => {
           ) : (
             // Menu Icon
             <div className="w-[24px] h-[24px] flex flex-col justify-between bg-gray-800 text-white p-[2px] rounded">
-              <span className="block h-[2px] bg-white"></span>
-              <span className="block h-[2px] bg-white"></span>
-              <span className="block h-[2px] bg-white"></span>
+              <Menu size={20} />
             </div>
           )}
         </button>
