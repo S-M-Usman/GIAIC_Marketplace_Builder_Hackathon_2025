@@ -49,7 +49,7 @@ const INITIAL_FORM_DATA: CheckoutFormData = {
 
 export default function CheckOut() {
   const router = useRouter()
-  const { items, getCartTotal, createOrder, isLoading } = useCart()
+  const { items, getCartTotal, isLoading } = useCart()
   const [formData, setFormData] = useState<CheckoutFormData>(INITIAL_FORM_DATA)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Partial<CheckoutFormData>>({})
