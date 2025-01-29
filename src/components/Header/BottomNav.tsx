@@ -1,10 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Input } from "../ui/input"
 import SearchBar from "./SearchBar"
 import { useState } from "react"
-import { Search } from "lucide-react"
 import { CartIcon } from "@/components/Cart/Icon"
 import { WishlistIcon } from "@/components/Wishlist/Icon"
 
