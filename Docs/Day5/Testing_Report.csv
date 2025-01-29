@@ -1,0 +1,6 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Remarks
+TC001,Verify product listing,Navigate to product page and load items,Products displayed correctly,Products displayed,Passed,Low,None
+TC002,Test search functionality,Enter search term and submit,Relevant products shown,Relevant products displayed,Passed,Medium,Ensure search is case-insensitive
+TC003,Check cart operations,Add item to cart and view cart,Item added and displayed in cart,Item added successfully,Passed,High,Test edge cases for cart limits
+TC004,Handle API failure gracefully,Simulate API failure,Error message displayed,Error message shown,Passed,High,Test for different error codes
+TC005,Verify cross-browser compatibility,Open site in different browsers,Consistent rendering and functionality,"Works in Chrome, Edge",Passed,Medium,Address any layout issues in Edge
